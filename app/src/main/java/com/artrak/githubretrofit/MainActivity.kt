@@ -11,17 +11,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getUser()
+        getProjectsForuser("kavoronkov")
+        getUser("kavoronkov")
     }
 
-    private fun getUser(){
+    private fun getUser(userName: String){
         val repository = SearchRepositoryProvider.provideSearchRepository()
-        repository.getUser()
+        repository.getUser(userName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe ({
                     result ->
                     var r = result.login
+                }, { error ->
+                    error.printStackTrace()
+                })
+    }
+
+    private fun getProjectsForuser(userName: String){
+        val repository = SearchRepositoryProvider.provideSearchRepository()
+        repository.getReposForuser(userName)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe ({
+                    result ->
+                    var r = result[0].name
                 }, { error ->
                     error.printStackTrace()
                 })

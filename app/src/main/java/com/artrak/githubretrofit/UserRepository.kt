@@ -22,30 +22,18 @@ data class User(
     @SerializedName("type") val type: String,
     @SerializedName("site_admin") val siteAdmin: Boolean,
     @SerializedName("name") val name: String,
-    @SerializedName("company") val company: String,
+    @SerializedName("company") val company: Any,
     @SerializedName("blog") val blog: String,
-    @SerializedName("location") val location: String,
-    @SerializedName("email") val email: String,
-    @SerializedName("hireable") val hireable: Boolean,
-    @SerializedName("bio") val bio: String,
+    @SerializedName("location") val location: Any,
+    @SerializedName("email") val email: Any,
+    @SerializedName("hireable") val hireable: Any,
+    @SerializedName("bio") val bio: Any,
     @SerializedName("public_repos") val publicRepos: Int,
     @SerializedName("public_gists") val publicGists: Int,
     @SerializedName("followers") val followers: Int,
     @SerializedName("following") val following: Int,
     @SerializedName("created_at") val createdAt: String,
-    @SerializedName("updated_at") val updatedAt: String,
-    @SerializedName("total_private_repos") val totalPrivateRepos: Int,
-    @SerializedName("owned_private_repos") val ownedPrivateRepos: Int,
-    @SerializedName("private_gists") val privateGists: Int,
-    @SerializedName("disk_usage") val diskUsage: Int,
-    @SerializedName("collaborators") val collaborators: Int,
-    @SerializedName("two_factor_authentication") val twoFactorAuthentication: Boolean,
-    @SerializedName("plan") val plan: Plan
+    @SerializedName("updated_at") val updatedAt: String
 )
 
-data class Plan(
-    @SerializedName("name") val name: String,
-    @SerializedName("space") val space: Int,
-    @SerializedName("private_repos") val privateRepos: Int,
-    @SerializedName("collaborators") val collaborators: Int
-)
+data class GitHubRepo(val name: String)

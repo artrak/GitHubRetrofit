@@ -3,12 +3,32 @@ package com.artrak.githubretrofit
 import io.reactivex.Observable
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
+import retrofit2.http.Body
+import retrofit2.http.Path
 import java.net.CookieManager
+import retrofit2.http.POST
+import retrofit2.http.GET
+
+
+
+
 
 interface ApiService {
 
-    @retrofit2.http.GET("user")
-    fun user(): Observable<User>
+    @retrofit2.http.GET("users/{user}")
+    fun user(@Path("user") userName: String): Observable<User>
+
+    @GET("/users/{user}/repos")
+    fun reposForuser(@Path("user") user: String): Observable<List<GitHubRepo>>
+
+    @POST("/users/new")
+    fun createUser(@Body user: User): Observable<User>
+
+//    @retrofit2.http.POST("login")
+//    fun login(@Body login: LoggingIn): Observable<Result>
+
+//    @retrofit2.http.GET("user/passwords")
+//    fun passwords(): Observable<PasswordsList>
 
 
     /**
